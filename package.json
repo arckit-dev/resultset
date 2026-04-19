@@ -1,6 +1,6 @@
 {
   "name": "@arckit/resultset",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Pagination, filtering, and result set utilities with Effect Schema branded types",
   "packageManager": "pnpm@10.33.0",
   "license": "MIT",
@@ -13,7 +13,14 @@
   "bugs": {
     "url": "https://github.com/arckit-dev/resultset/issues"
   },
-  "keywords": ["arckit", "pagination", "filtering", "resultset", "effect", "branded-types"],
+  "keywords": [
+    "arckit",
+    "pagination",
+    "filtering",
+    "resultset",
+    "effect",
+    "branded-types"
+  ],
   "type": "module",
   "exports": {
     ".": {
@@ -30,7 +37,9 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "engines": {
     "node": ">=22"
