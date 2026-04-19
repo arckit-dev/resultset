@@ -5,6 +5,7 @@ Pagination, filtering, and result set utilities with Effect Schema branded types
 [![npm version](https://img.shields.io/npm/v/@arckit/resultset)](https://www.npmjs.com/package/@arckit/resultset)
 [![npm downloads](https://img.shields.io/npm/dm/@arckit/resultset)](https://www.npmjs.com/package/@arckit/resultset)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/@arckit/resultset)](https://bundlephobia.com/package/@arckit/resultset)
+[![codecov](https://codecov.io/gh/arckit-dev/resultset/graph/badge.svg)](https://codecov.io/gh/arckit-dev/resultset)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Effect](https://img.shields.io/badge/Effect-3-black)](https://effect.website/)
 
