@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/arckit-dev/resultset/compare/v1.0.0...v1.0.1) (2026-04-19)
+
+
+### Bug Fixes
+
+* disable hash in tsdown output for stable DTS filenames ([5a8d3f7](https://github.com/arckit-dev/resultset/commit/5a8d3f79e8cde7d77d18ee18e3d1f301afce85f5))
+
 # 1.0.0 (2026-04-19)
 
 
