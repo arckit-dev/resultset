@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { filtered } from './filtered';
+import { Search } from './search';
 
 describe('filtered', () => {
   it('should return result without search when no params', () => {
@@ -17,20 +18,20 @@ describe('filtered', () => {
   });
 
   it('should attach search to result', () => {
-    const result = filtered({ items: ['a'], total: 1 }, { search: 'hello' });
+    const result = filtered({ items: ['a'], total: 1 }, { search: Search('hello') });
 
-    expect(result).toStrictEqual({ items: ['a'], total: 1, search: 'hello' });
+    expect(result).toStrictEqual({ items: ['a'], total: 1, search: Search('hello') });
   });
 
   it('should attach empty string as search', () => {
-    const result = filtered({ items: [] }, { search: '' });
+    const result = filtered({ items: [] }, { search: Search('') });
 
-    expect(result).toStrictEqual({ items: [], search: '' });
+    expect(result).toStrictEqual({ items: [], search: Search('') });
   });
 
   it('should preserve all existing properties', () => {
-    const result = filtered({ items: [], total: 0, extra: true }, { search: 'test' });
+    const result = filtered({ items: [], total: 0, extra: true }, { search: Search('test') });
 
-    expect(result).toStrictEqual({ items: [], total: 0, extra: true, search: 'test' });
+    expect(result).toStrictEqual({ items: [], total: 0, extra: true, search: Search('test') });
   });
 });
