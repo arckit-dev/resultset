@@ -1,9 +1,11 @@
+import type { Search } from './search';
+
 export type FilterParams = {
-  readonly search?: string;
+  readonly search?: Search;
 };
 
 export type Filtered<T> = T & {
-  readonly search?: string;
+  readonly search?: Search;
 };
 
 export const filtered = <T>(result: T, params: FilterParams = {}): Filtered<T> => ({
