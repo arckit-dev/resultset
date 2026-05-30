@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/arckit-dev/resultset/compare/v1.1.0...v2.0.0) (2026-05-30)
+
+
+* feat!: replace Effect Schema branded models with native branded types ([3003d42](https://github.com/arckit-dev/resultset/commit/3003d42fc46556121a5b272661d9b2a54b0834aa))
+
+
+### BREAKING CHANGES
+
+* models are no longer Effect Schemas — the `.schema` property
+and `Model.TypeOf` are removed. Construct via Page(n) as before; branded types
+are now number & { __brand } / string & { __brand }.
+
 # [1.1.0](https://github.com/arckit-dev/resultset/compare/v1.0.1...v1.1.0) (2026-05-09)
 
 

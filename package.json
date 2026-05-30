@@ -1,6 +1,6 @@
 {
   "name": "@arckit/resultset",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Pagination, filtering, and result set utilities with native branded types",
   "packageManager": "pnpm@10.33.0",
   "license": "MIT",
