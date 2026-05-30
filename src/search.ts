@@ -1,5 +1,3 @@
-import { defineModel, type Model } from '@arckit/effect';
-import { brand, String as SchemaString } from 'effect/Schema';
+export type Search = string & { readonly __brand: 'Search' };
 
-export const Search = defineModel(SchemaString.pipe(brand('Search')));
-export type Search = Model.TypeOf<typeof Search>;
+export const Search = (value: string): Search => value as Search;
