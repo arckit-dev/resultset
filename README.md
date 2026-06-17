@@ -1,13 +1,12 @@
 # @arckit/resultset
 
-Pagination, filtering, and result set utilities with Effect Schema branded types.
+Pagination, filtering, and result set utilities with native branded types.
 
 [![npm version](https://img.shields.io/npm/v/@arckit/resultset)](https://www.npmjs.com/package/@arckit/resultset)
 [![npm downloads](https://img.shields.io/npm/dm/@arckit/resultset)](https://www.npmjs.com/package/@arckit/resultset)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/@arckit/resultset)](https://bundlephobia.com/package/@arckit/resultset)
 [![codecov](https://codecov.io/gh/arckit-dev/resultset/graph/badge.svg)](https://codecov.io/gh/arckit-dev/resultset)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Effect](https://img.shields.io/badge/Effect-3-black)](https://effect.website/)
 
 ## 📑 Table of Contents
 
@@ -20,7 +19,7 @@ Pagination, filtering, and result set utilities with Effect Schema branded types
 
 <h2 id="about">🪧 About</h2>
 
-Type-safe pagination and filtering utilities using [Effect Schema](https://effect.website/docs/schema/introduction) branded types for `Page` and `PageSize`. Ensures values are always valid positive integers at the type level.
+Type-safe pagination, filtering, and sorting utilities using native TypeScript branded types for `Page` and `PageSize`. Ensures values are always valid positive integers at the type level.
 
 <h2 id="installation">📦 Installation</h2>
 
@@ -44,10 +43,28 @@ const result = paginate(items, { page: Page(2), pageSize: PageSize(5) });
 ### Filtering
 
 ```typescript
-import { filtered } from '@arckit/resultset';
+import { filtered, Search } from '@arckit/resultset';
 
-const result = filtered(paginatedResult, { search: 'hello' });
+const result = filtered(paginatedResult, { search: Search('hello') });
 // Adds search metadata to the result
+```
+
+### Sorting
+
+```typescript
+import { Sort, sorted } from '@arckit/resultset';
+
+const result = sorted(paginatedResult, { sort: Sort('name', 'desc') });
+// Adds sort metadata to the result: { ..., sort: { field: 'name', direction: 'desc' } }
+```
+
+`Sort` carries the chosen field and direction; the actual ordering stays the
+caller's responsibility (e.g. the database query). `Sort` is generic over the
+field name, so it can be constrained to a known set of sortable columns:
+
+```typescript
+type ClientField = 'name' | 'createdAt';
+const sort = Sort<ClientField>('createdAt', 'desc');
 ```
 
 <h2 id="api">📖 API</h2>
@@ -62,18 +79,37 @@ Branded positive integer. Clamps to 1 minimum, rounds to nearest integer.
 
 ### `paginate<T>(items: T[], params?) => Paginated<T>`
 
-| Parameter | Description |
-|-----------|-------------|
-| `items` | The full array to paginate |
-| `params.page` | Page number (default: 1) |
+| Parameter         | Description                  |
+|-------------------|------------------------------|
+| `items`           | The full array to paginate   |
+| `params.page`     | Page number (default: 1)     |
 | `params.pageSize` | Items per page (default: 10) |
+
+### `Search(value: string) => Search`
+
+Branded search string. Wraps a raw string into the `Search` brand for use with `filtered`.
 
 ### `filtered<T>(result: T, params?) => Filtered<T>`
 
-| Parameter | Description |
-|-----------|-------------|
-| `result` | The result object to augment |
-| `params.search` | Optional search string to attach |
+| Parameter       | Description                              |
+|-----------------|------------------------------------------|
+| `result`        | The result object to augment             |
+| `params.search` | Optional `Search` to attach              |
+
+### `SortDirection(value: string) => SortDirection`
+
+Normalizes a raw value to `'asc' | 'desc'`. Defaults to `'asc'` for anything other than `'desc'`.
+
+### `Sort<Field>(field: Field, direction?: SortDirection) => Sort<Field>`
+
+Builds a sort instruction. `direction` defaults to `'asc'`. Generic over the field name to constrain sortable columns.
+
+### `sorted<T, Field>(result: T, params?) => Sorted<T, Field>`
+
+| Parameter     | Description                  |
+|---------------|------------------------------|
+| `result`      | The result object to augment |
+| `params.sort` | Optional `Sort` to attach    |
 
 <h2 id="contributing">🤗 Contributing</h2>
 
