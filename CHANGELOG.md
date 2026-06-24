@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/arckit-dev/resultset/compare/v2.0.0...v2.1.0) (2026-06-24)
+
+
+### Features
+
+* add Sort, SortDirection and sorted result wrapper ([49ed9ea](https://github.com/arckit-dev/resultset/commit/49ed9ea00962b38402e228564b0cddc9b0b5966c))
+
 # [2.0.0](https://github.com/arckit-dev/resultset/compare/v1.1.0...v2.0.0) (2026-05-30)
 
 
